@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "角色模拟",
+    "usingComponents": {
+        "pages": "/components/pages/index"
+    }
+}

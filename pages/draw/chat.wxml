@@ -1,0 +1,41 @@
+<view style="height: 100%">
+    <view class="page">
+        <scroll-view class="box-msg-list" scroll-x="{{false}}" scroll-y="{{true}}" scroll-with-animation="{{false}}"
+            scroll-top="{{scrollTop}}">
+            <view class="list" wx:if="{{lists && lists.length > 0}}">
+                <view class="message-group" wx:for="{{lists}}">
+                    <view class="message user" data-index="{{index}}" bindlongpress="copyText">
+                        <view class="avatar" style="background: #9aa37e">
+                            <image mode="widthFix" src="{{siteroot}}/static/img/ic_user.png"></image>
+                        </view>
+                        <view class="text">
+                            <textComponent text="{{item.message}}" bindcopy="copyText"></textComponent>
+                        </view>
+                    </view>
+                    <view class="message ai">
+                        <view class="avatar">
+                            <image mode="widthFix" src="{{siteroot}}/static/img/ic_ai.png"></image>
+                        </view>
+                        <view class="text">
+                            <imageComponent
+                                item="{{item}}"
+                                bindpreview="previewImage"
+                                bindretry="retryDraw"
+                            ></imageComponent>
+                        </view>
+                    </view>
+                    
+                </view>
+            </view>
+        </scroll-view>
+
+        <view class="box-input">
+            <view class="input">
+                <textarea type="text" model:value="{{message}}" confirm-type="send" bindconfirm="sendConfirm" fixed='true' contenteditable="true" auto-height="true" maxlength="3000" placeholder="输入要求和场景描述"></textarea>
+                <button class="btn-send" bindtap="submitDraw">
+                    <image mode="widthFix" src="/images/ic_send.png"></image>
+                </button>
+            </view>
+        </view>
+    </view>
+</view>

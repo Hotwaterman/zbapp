@@ -1,0 +1,5 @@
+<view>
+    <view class="list">
+        <view class="item" wx:for="{{list}}" bindtap="toArticle" data-id="{{item.id}}">{{ index + 1}}、{{ item.title }}</view>
+    </view>
+</view>

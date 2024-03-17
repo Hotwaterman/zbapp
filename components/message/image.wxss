@@ -1,0 +1,48 @@
+.image {
+    width: 100%;
+    border-radius: 20rpx;
+    border: 1px solid #f6f6f6;
+    box-sizing: border-box;
+    float: left;
+    background: #f7f7f7;
+}
+
+.writing {
+    width: 532rpx;
+    height: 532rpx;
+    background: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20rpx;
+}
+
+.fail {
+    flex-direction: column;
+}
+
+.fail .errmsg {
+    color: #666;
+    font-size: 28rpx;
+    display: flex;
+    align-items: flex-start;
+    line-height: 42rpx;
+    padding: 30rpx 0;
+    overflow: hidden;
+    max-height: 210rpx;
+}
+.fail .errmsg image {
+    width: 32rpx;
+    height: 32rpx;
+    margin-right: 10rpx;
+    position: relative;
+    top: 4rpx;
+}
+.fail .btn-retry {
+    color: #666;
+    padding: 10rpx 24rpx;
+    background: #fff;
+    border-radius: 10rpx;
+    margin-top: 20rpx;
+    font-size: 24rpx;
+}

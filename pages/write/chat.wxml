@@ -1,0 +1,1 @@
+<web-view wx:if="{{pageIsLoad && siteroot && token && prompt_id}}" src="{{siteroot}}/web/chat?token={{token}}&prompt_id={{prompt_id}}" bindload="webOnload"></web-view>

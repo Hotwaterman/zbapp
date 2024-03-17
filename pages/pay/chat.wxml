@@ -1,0 +1,39 @@
+<view class="wrap">
+    <view class="wallet">
+        <view class="balance" style="margin-top: 12rpx">
+            对话余额
+            <text>{{ balance }}</text>
+            条
+        </view>
+        <view wx:if="{{vip_expire_time}}" style="margin-top: 20rpx;">
+            <text class="tips">您已开通vip会员，期间不消耗余额</text>
+        </view>
+    </view>
+
+    <block wx:if="{{system == 'ios' && (is_check || !is_ios_pay ) }}">
+        <view class="box" style="padding-top: 60rpx;">
+            <button class="btn-pay" style="color: #fff;" bindtap="toKefu"><image mode="widthFix" src="/images/ic_kefu.png" style="width: 48rpx; height: 48rpx; margin-right: 10rpx;"></image>联系客服</button>
+        </view>
+    </block>
+ 
+    <block wx:if="{{ !(system == 'ios' && (is_check || !is_ios_pay)) }}">
+        <view class="box" style="padding-right:0;" wx:if="{{goodsList && goodsList.length > 0}}">
+            <view class="box-title">
+                <text>充值对话次数</text>
+                <text class="desc">永不过期，文字类对话可用</text>
+            </view>
+            <view class="goods-list">
+                <view class="goods {{item.id == goods_id ? 'active' : ''}}" wx:for="{{goodsList}}" bindtap="chooseGoods" data-id="{{item.id}}">
+                    <view class="title">
+                        <text class="num">{{item.num}}</text>
+                        <text class="unit">条</text>
+                    </view>
+                    <view class="price">特价<text>{{item.price / 100}}</text>元</view>
+                    <view class="market_price" wx:if="{{item.market_price > 0}}">原价{{item.market_price / 100}}元</view>
+                </view>
+                <view style="clear: both;"></view>
+            </view>
+            <button class="btn-pay" bindtap="doPayGoods" wx:if="{{is_check == 0 || system != 'ios'}}" disabled="{{!goods_id || paying}}">立即充值</button>
+        </view>
+    </block>
+</view>

@@ -1,0 +1,41 @@
+<view class="wrap">
+    <view class="wallet">
+        <view class="box-vip">
+            <view class="body">
+                <view style="display: flex; align-items: center">
+                    <image class="icon" src="/images/user/ic_vip.png"></image>
+                    <text>VIP会员</text>
+                    <view class="line"></view>
+                    <text wx:if="{{vip_expire_time}}">{{ vip_expire_time }} 到期</text>
+                    <text wx:else>未开通</text>
+                </view>
+            </view>
+            <image class="bg" src="/images/user/bg-vip.png"></image>
+        </view>
+    </view>
+    <block wx:if="{{system == 'ios' && (is_check || !is_ios_pay ) }}">
+        <view class="box" style="padding-top: 60rpx;">
+            <button class="btn-pay" bindtap="toKefu"><image mode="widthFix" src="/images/ic_kefu_gold.png" style="width: 48rpx; height: 48rpx; margin-right: 10rpx;"></image>联系客服</button>
+        </view>
+    </block>
+    <block wx:else>
+        <view class="box" style="padding-right:0;" wx:if="{{vipList && vipList.length > 0}}">
+            <view class="box-title">
+                <text>开通VIP会员</text>
+                <text class="desc">高速通道，无限对话</text>
+            </view>
+            <view class="goods-list">
+                <view class="goods {{item.id == vip_id ? 'active' : ''}}" wx:for="{{vipList}}" bindtap="chooseVip" data-id="{{item.id}}">
+                    <view class="title">
+                        <text class="num">{{item.num}}</text>
+                        <text class="unit">个月</text>
+                    </view>
+                    <view class="price">特价<text>{{item.price / 100}}</text>元</view>
+                    <view class="market_price" wx:if="{{item.market_price > 0}}">原价{{item.market_price / 100}}元</view>
+                </view>
+                <view style="clear: both;"></view>
+            </view>
+            <button class="btn-pay" bindtap="doPayVip" wx:if="{{is_check == 0 || system != 'ios'}}" disabled="{{!vip_id || paying}}">立即开通会员</button>
+        </view>
+    </block>
+</view>

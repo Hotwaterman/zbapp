@@ -1,0 +1,32 @@
+<view class="page">
+    <view wx:if="{{ (share.textArr && share.textArr.length > 0) }}">
+        <view class="title">分享文案</view>
+        <view class="pannel">
+            <view class="textarea">
+                <rich-text nodes="{{currentText}}"></rich-text>
+            </view>
+            <view class="btn-group">
+                <view class="btn btn-copy" bindtap="copyText">复制文案</view>
+                <view class="btn btn-next" bindtap="nextText" wx:if="{{ share.textArr.length > 1 }}">换一个</view>
+            </view>
+        </view>
+    </view>
+    <view wx:if="{{ (share.haibaoArr && share.haibaoArr.length > 0) }}">
+        <view class="title">分享海报</view>
+        <view class="pannel">
+            <swiper class="poster-list" bindchange="swiperChange" indicator-dots="{{true}}" current="{{currentHaibao}}" circular="{{true}}" autoplay="{{false}}" previous-margin="-10rpx" next-margin="-10rpx">
+                <swiper-item class="item" wx:for="{{share.haibaoArr}}">
+                    <view class="poster" style="width: {{item.bg_w * item.scale}}rpx; height: {{item.bg_h * item.scale}}rpx;">
+                        <image src="{{item.bg}}" style="width: 100%; height: 100%;"></image>
+                        <image src="{{share.qrcode}}" style="left: {{item.hole_x * item.scale}}rpx; top: {{item.hole_y * item.scale}}rpx; width: {{item.hole_w * item.scale}}rpx; height:{{item.hole_h * item.scale}}rpx;"></image>
+                    </view>
+                </swiper-item>
+            </swiper>
+            <view class="btn-group" style="margin-top: 100rpx;">
+                <view class="btn btn-save" bindtap="saveToAlbum">保存到相册</view>
+            </view>
+        </view>
+    </view>
+    
+    <canvas canvasId="poster" style="display:block; height: 3000rpx; width: 3000rpx; position: absolute; left: -3000rpx; top: -3000rpx;"></canvas>
+</view>

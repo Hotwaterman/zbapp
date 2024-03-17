@@ -1,0 +1,23 @@
+page {
+    background: #f7f7f8;
+}
+.list {
+    background: #fff;
+    margin: 30rpx;
+    border-radius: 20rpx;
+    overflow: hidden;
+}
+.item {
+    line-height: 40rpx;
+    padding: 40rpx 40rpx;
+    font-size: 32rpx;
+    color: #333;
+    border-radius: 10rpx;
+    border-bottom: 1px solid #f2f2f2;
+}
+.item:active {
+    background: #f3f3f4;
+}
+.item:last-child {
+    border-bottom: none;
+}

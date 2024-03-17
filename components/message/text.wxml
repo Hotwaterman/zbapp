@@ -1,0 +1,3 @@
+<view>
+    <text user-select="{{true}}">{{ text }}</text>
+</view>

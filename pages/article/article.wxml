@@ -1,0 +1,7 @@
+<import src="/utils/wxParse/wxParse.wxml"/>
+<view class="panel">
+    <view class="content">
+        <template wx:if="{{content}}" is="wxParse" data="{{wxParseData:article.nodes}}"/>
+        <view wx:else style="text-align: center; text-indent: 0; margin-top: 100rpx; color: #ccc;">暂无内容</view>
+    </view>
+</view>

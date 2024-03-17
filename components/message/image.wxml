@@ -1,0 +1,15 @@
+<view>
+    <view wx:if="{{item.state === 0}}" class="writing">
+        <drawLoading title="生成中，预计需要30秒左右" color="#04BABE"></drawLoading>
+    </view>
+    <view wx:elif="{{item.state === 1}}">
+        <image wx:for="{{item.response}}" wx:for-item="image" class="image" src="{{image}}" mode="widthFix" bindtap="previewImage" data-image="{{image}}"></image>
+    </view>
+    <view wx:elif="{{item.state === 2}}" class="writing fail">
+        <view class="errmsg">
+            <image src="/images/ic_fail.png"></image>
+            <text style="max-width: 400rpx;">生成失败: {{ item.errmsg }} </text>
+        </view>
+        <view><text bindtap="retry" data-id="{{item.draw_id}}" class="btn-retry">重新生成</text></view>
+    </view>
+</view>

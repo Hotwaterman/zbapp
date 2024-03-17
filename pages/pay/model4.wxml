@@ -1,0 +1,40 @@
+<view>
+    <view class="no-order" wx:if="{{is_check === 1}}">
+        <image src="/images/commission/no-order.png" class="no-order-img"></image>
+        <view class="text">暂未上线</view>
+    </view>
+    <view class="wrap" wx:if="{{is_check === 0}}">
+        <view class="wallet">
+            <view class="balance" style="margin-top: 12rpx">
+                {{model4Name}}余额
+                <text>{{ balance_model4 }}</text>
+                万字
+            </view>
+        </view>
+
+        <block wx:if="{{system == 'ios' && (is_check || !is_ios_pay ) }}">
+            <view class="box" style="padding-top: 60rpx;">
+                <button class="btn-pay" style="color: #fff;" bindtap="toKefu"><image mode="widthFix" src="/images/ic_kefu.png" style="width: 48rpx; height: 48rpx; margin-right: 10rpx;"></image>联系客服</button>
+            </view>
+        </block>
+
+        <view class="box" style="padding-right: 0" wx:if="{{ !(system == 'ios' && (is_check || !is_ios_pay)) }}">
+            <view class="box-title">
+                <text>充值{{model4Name}}余额</text>
+                <text class="desc">仅 {{model4Name}} 模型可用</text>
+            </view>
+            <view class="model4-list">
+                <view class="model4 {{item.id == model4_id ? 'active' : ''}}" wx:for="{{model4List}}" bindtap="chooseModel4" data-id="{{item.id}}">
+                    <view class="title">
+                        <text class="num">{{item.num}}</text>
+                        <text class="unit">万字</text>
+                    </view>
+                    <view class="price">特价<text>{{item.price / 100}}</text>元</view>
+                    <view class="market_price" wx:if="{{item.market_price > 0}}">原价{{item.market_price / 100}}元</view>
+                </view>
+                <view style="clear: both"></view>
+            </view>
+            <button class="btn-pay" bindtap="doPayModel4" :disabled="!model4_id || paying">立即充值</button>
+        </view>
+    </view>
+</view>

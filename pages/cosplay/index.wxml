@@ -1,0 +1,38 @@
+<view class="page">
+		<view wx:for="{{allRoles}}" wx:for-item="group" wx:for-index="index">
+			<view class="group" wx:if="{{group.roles && group.roles.length > 0}}">
+				<view class="type-title"><text>{{ group.title }}</text></view>
+				<view class="role-list">
+				    <view class="role-item"
+						wx:for="{{group.roles}}"
+						bindtap="toCosplayChat"
+						data-id="{{item.id}}"
+					>
+						<view class="thumb">
+							<image src="{{item.thumb || '/images/cosplay/default.png'}}"></image>
+						</view>
+						<view style="width: 192rpx;">
+							<view class="title">{{ item.title }}</view>
+							<view class="ops">
+								<view class="op-item" style="padding-right: 20rpx;">
+									<image class="icon" src="/images/cosplay/ic_views.png"></image>
+									{{ item.views }}
+								</view>
+								<view class="op-item">
+									<image class="icon" src="/images/cosplay/ic_usages.png"></image>
+									{{ item.usages }}
+								</view>
+							</view>
+						</view>
+				    </view>
+				    <view style="clear: both"></view>
+				</view>
+			</view>
+		</view>
+		
+        <view class="empty" wx:if="{{!allRoles || allRoles.length == 0}}">
+            <image src="/images/nodata.png"></image>
+        </view>
+		
+		<view class="nomore" wx:else>没有更多了~</view>
+    </view>

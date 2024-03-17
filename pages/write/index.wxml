@@ -1,0 +1,43 @@
+<view class="page">
+
+    <view class="tab-nav" wx:if="{{topicList && topicList.length > 0}}">
+        <view class="tab-list" style="width: {{tabWidth}}rpx;">
+            <view class="tab {{topic_id == 'vote' ? 'active' : ''}}" bindtap="switchTopic" data-topic="vote">收藏</view>
+            <view class="tab {{topic_id == 'all' ? 'active' : ''}}" bindtap="switchTopic" data-topic="all">全部</view>
+            <view wx:for="{{topicList}}" class="tab {{topic_id == item.id ? 'active' : ''}}" bindtap="switchTopic" data-topic="{{item.id}}">{{item.title}}</view>
+        </view>
+    </view>
+
+    <view class="prompt-list" wx:if="{{promptList && promptList.length > 0}}">
+        <view class="prompt-item" wx:for="{{promptList}}">
+            <view bindtap="toWriteChat" data-id="{{item.id}}">
+                <view class="title">{{item.title}}</view>
+                <view class="desc">{{item.desc}}</view>
+            </view>
+            <view class="ops">
+                <view class="op-item">
+                    <image class="icon" src="/images/write/ic_views.png"></image>
+                    {{item.views}}
+                </view>
+                <view class="op-item">
+                    <image class="icon" src="/images/write/ic_usages.png"></image>
+                    {{item.usages}}
+                </view>
+                <view class="op-item" bindtap="doVote" data-id="{{item.id}}">
+                    <image wx:if="{{item.isVote == 1}}" class="icon" src="/images/write/ic_vote_active.png"></image>
+                    <image wx:else class="icon" src="/images/write/ic_vote.png"></image>
+                </view>
+            </view>
+        </view>
+        <view style="clear: both;"></view>
+    </view>
+
+    <view class="empty" wx:else>
+        <image src="/images/nodata.png"></image>
+    </view>
+
+    <view wx:if="{{promptList && promptCount > pagesize}}" style="padding: 30rpx 0 30rpx 0;width: 100%;">
+        <pages count="{{promptCount}}" pagesize="{{pagesize}}" page="{{page}}" bind:change="pageChange"></pages>
+    </view>
+    
+</view>

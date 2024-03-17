@@ -1,0 +1,42 @@
+page {
+    background-color: #fff;
+}
+.image {
+    padding: 80rpx 0 40rpx 0;
+    text-align: center;
+}
+.image image {
+    width: 360rpx;
+    height: 260rpx;
+    opacity: 0.75;
+}
+.desc {
+    text-align: center;
+    color: #666;
+    padding: 40rpx 0;
+    font-size: 28rpx;
+    letter-spacing: 1px;
+}
+
+.btn-login {
+    width: 530rpx;
+    height: 80rpx;
+    padding: 10rpx;
+    background-color: #04BABE;
+    color: #fff;
+    font-size: 30rpx;
+    border: none;
+    outline: none;
+    margin: 40rpx 0 30rpx 110rpx;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 2rpx;
+}
+.btn-login::after {
+    display: none;
+}
+.btn-login:active {
+    transform: scale(0.9);
+}

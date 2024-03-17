@@ -1,0 +1,95 @@
+<view class="page">
+    <view class="bg-user" style="{{(is_check && system == 'ios') ? 'height: 200rpx;' : ''}}">
+        <view class="userinfo" wx:if="{{userinfo}}">
+            <view class="avatar" wx:if="{{!userinfo.avatar}}" bindtap="getUserProfile">
+                <image src="/images/avatar.jpg"></image>
+            </view>
+            <view class="avatar" wx:else bindtap="toInputNickname">
+                <image src="{{userinfo.avatar}}"></image>
+            </view>
+            <view class="info">
+                <view class="nickname" wx:if="{{!userinfo.nickname && !userinfo.avatar}}" bindtap="getUserProfile">未设置昵称</view>
+                <view class="nickname" wx:else bindtap="toInputNickname">{{userinfo.nickname || '未设置昵称'}}</view>
+                <view class="mid" style="padding-left: 2rpx;">MID: {{userinfo.id}}</view>
+                <button class="phone" open-type="getPhoneNumber" bindgetphonenumber="getUserPhone">
+                    <image src="/images/user/ic_phone.png"></image>
+                    <text>{{userinfo.phone || '未绑定手机号'}}</text>
+                </button>
+            </view>
+        </view>
+    </view>
+    <view class="box-vip" wx:if="{{!(is_check && system == 'ios')}}">
+        <image class="bg" src="/images/user/bg-vip.png"></image>
+        <view class="body">
+            <view style="display: flex; align-items: center;">
+                <image class="icon" src="/images/user/ic_vip.png"></image>
+                <text>VIP会员</text>
+                <view class="line"></view>
+                <text style="font-size: 24rpx;" wx:if="{{userinfo.vip_expire_time}}">{{userinfo.vip_expire_time}} 到期</text>
+                <text style="font-size: 24rpx;" wx:else>高速通道 无限对话</text>
+            </view>
+            <view>
+                <button class="btn-vip" bindtap="toPayVip" wx:if="{{userinfo.vip_expire_time}}" style="width: 92rpx;">续费</button>
+                <button class="btn-vip" bindtap="toPayVip" wx:else>立即开通</button>
+            </view>
+        </view>
+    </view>
+    <view class="wallet">
+        <view class="item" data-url="/pages/pay/chat" bindtap="linkto">
+            <view>
+                <text class="num">{{ userinfo.balance }}</text>
+                <text class="unit">条</text>
+            </view>
+            <view class="label">对话余额</view>
+        </view>
+        <view class="item" data-url="/pages/pay/draw" bindtap="linkto">
+            <view>
+                <text class="num">{{ userinfo.balance_draw }}</text>
+                <text class="unit">张</text>
+            </view>
+            <view class="label">绘画余额</view>
+        </view>
+    </view>
+    <view class="menus">
+        <view class="item" data-url="/pages/commission/index" bindtap="linkto" wx:if="{{userinfo.is_commission}}">
+            <text class="text-grey">推广中心</text>
+            <image class="arrow" src="/images/ic_arrow_r.png"></image>
+        </view>
+        <view class="item" data-url="/pages/commission/apply" bindtap="linkto" wx:if="{{userinfo.commission_is_open && !userinfo.is_commission}}">
+            <text class="text-grey">申请推广员</text>
+            <image class="arrow" src="/images/ic_arrow_r.png"></image>
+        </view>
+        <view class="item" data-url="/pages/commission/share" bindtap="linkto">
+            <text class="text-grey">邀请好友</text>
+            <image class="arrow" src="/images/ic_arrow_r.png"></image>
+        </view>
+    </view>
+    <view class="menus">
+        <view class="item" data-url="/pages/user/card" bindtap="linkto">
+            <text class="text-grey">卡密兑换</text>
+            <image class="arrow" src="/images/ic_arrow_r.png"></image>
+        </view>
+        <view class="item" data-url="/pages/task/index" bindtap="linkto">
+            <text class="text-grey">每日任务</text>
+            <image class="arrow" src="/images/ic_arrow_r.png"></image>
+        </view>
+    </view>
+    <view class="menus">
+        <view class="item" data-url="/pages/article/list?type=help" bindtap="linkto">
+            <text class="text-grey">使用教程</text>
+            <image class="arrow" src="/images/ic_arrow_r.png"></image>
+        </view>
+        <view class="item" data-url="/pages/user/feedback" bindtap="linkto">
+            <text class="text-grey">意见反馈</text>
+            <image class="arrow" src="/images/ic_arrow_r.png"></image>
+        </view>
+        <view class="item" data-url="/pages/article/article?type=about" bindtap="linkto">
+            <text class="text-grey">关于我们</text>
+            <image class="arrow" src="/images/ic_arrow_r.png"></image>
+        </view>
+        <view class="item" data-url="/pages/article/article?type=kefu" bindtap="linkto">
+            <text class="text-grey">联系客服</text>
+            <image class="arrow" src="/images/ic_arrow_r.png"></image>
+        </view>
+    </view>
+</view>

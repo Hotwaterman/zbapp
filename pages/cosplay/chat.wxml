@@ -1,0 +1,1 @@
+<web-view wx:if="{{pageIsLoad && siteroot && token && role_id}}" src="{{siteroot}}/web/chat?token={{token}}&role_id={{role_id}}" bindload="webOnload"></web-view>

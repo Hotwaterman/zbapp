@@ -1,0 +1,7 @@
+<view class="page">
+    <view class="image">
+        <image src="/images/ic_pc.png"></image>
+    </view>
+    <view class="desc">您将在电脑上登录网页版</view>
+    <button class="btn-login" bindtap="doLogin">确认登录</button>
+</view>
